@@ -1,4 +1,5 @@
 package com.princesses;
+
 import com.princesses.model.Princess;
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ import static com.princesses.Util.updatePrincess;
 import static java.lang.Integer.parseInt;
 
 public class PrincessRunner {
+
     public static void main(String[] args) {
         String operations = """
                 Choose your command:

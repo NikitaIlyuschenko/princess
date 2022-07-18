@@ -7,7 +7,9 @@ public enum HairColor {
     STRAWBERRY_BLONDE("Strawberry_blonde"),
     RED("Red"),
     BROWN("Brown");
+
     private final String hairColor;
+
     HairColor(String hairColor) {
         this.hairColor = hairColor;
     }

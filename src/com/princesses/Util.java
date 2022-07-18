@@ -1,4 +1,5 @@
 package com.princesses;
+
 import com.princesses.model.EyeColor;
 import com.princesses.model.HairColor;
 import com.princesses.model.Princess;
@@ -14,6 +15,7 @@ import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
 public class Util {
+
     private static final File file = Path.of("src", "resources", "disney-princesses.txt").toFile();
     public static List<Princess> readFile() {
         List<Princess> princessList = new ArrayList<>();
@@ -33,6 +35,7 @@ public class Util {
         }
         return princessList;
     }
+
     public static void printPrincessList(List<Princess> princesses) {
         princesses.forEach(System.out::println);
     }
@@ -44,9 +47,16 @@ public class Util {
         }
         return new Princess();
     }
+
     public static boolean addPrincess(List<Princess> princesses, String[] fields) {
         Princess princess = new Princess();
-        princess.setName(fields[2]);
+        if (fields[2].length() <= 30 && fields[2].length() >= 1){
+            princess.setName(fields[2]);
+        }
+        else {
+            System.err.println("Name length should be between 1 and 30 symbols");
+            return false;
+        }
         princess.setId(parseInt(fields[1]));
         if (parseInt(fields[3]) <= 99 && parseInt(fields[3]) > 0) {
             princess.setAge(parseInt(fields[3]));
@@ -62,14 +72,22 @@ public class Util {
         System.out.printf("Princess %s has been added \n", fields[2]);
         return afterWriting > beforeWriting;
     }
+
     public static boolean deletePrincess(List<Princess> princesses, int id) {
         return princesses.removeIf(princess -> princess.getId() == id);
     }
+
     public static void updatePrincess(List<Princess> princesses, int id, String[] fields) {
         for (Princess princess : princesses) {
             int a = princess.getId();
             if (a == id) {
-                Objects.requireNonNull(princess).setName(fields[2]);
+                if (fields[2].length() <= 30 && fields[2].length() >= 1){
+                    princess.setName(fields[2]);
+                }
+                else {
+                    System.err.println("Name length should be between 1 and 30 symbols");
+                    break;
+                }
                 if (parseInt(fields[3]) <= 99 && parseInt(fields[3]) > 0) {
                     princess.setAge(parseInt(fields[3]));
                 } else {
@@ -83,6 +101,7 @@ public class Util {
             }
         }
     }
+
     private static void setEyeColor(Princess princess, String[] fields) {
         switch (fields[5].toLowerCase()) {
             case "brown" -> princess.setEyeColor(EyeColor.BROWN);
@@ -91,6 +110,7 @@ public class Util {
             case "hazel" -> princess.setEyeColor(EyeColor.HAZEL);
         }
     }
+
     private static void setHairColor(Princess princess, String[] fields) {
         switch (fields[4].toLowerCase()) {
             case "black" -> princess.setHairColor(HairColor.BLACK);
