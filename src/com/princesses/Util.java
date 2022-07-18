@@ -66,7 +66,6 @@ public class Util {
                 return false;
             }
         }
-        //princess.setId(parseInt(fields[1]));
         if (parseInt(fields[3]) <= 99 && parseInt(fields[3]) > 0) {
             princess.setAge(parseInt(fields[3]));
         } else {
