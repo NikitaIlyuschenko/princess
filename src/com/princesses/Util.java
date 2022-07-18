@@ -57,7 +57,16 @@ public class Util {
             System.err.println("Name length should be between 1 and 30 symbols");
             return false;
         }
-        princess.setId(parseInt(fields[1]));
+        for (Princess currentPrincess : princesses) {
+            if (currentPrincess.getId() != parseInt(fields[1])){
+                princess.setId(parseInt(fields[1]));
+            }
+            else {
+                System.err.println("Princess with this id has been already added");
+                return false;
+            }
+        }
+        //princess.setId(parseInt(fields[1]));
         if (parseInt(fields[3]) <= 99 && parseInt(fields[3]) > 0) {
             princess.setAge(parseInt(fields[3]));
         } else {
